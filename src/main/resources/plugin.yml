@@ -1,0 +1,19 @@
+name: Soul_Skirmish
+version: ${project.version}
+main: me.akadeax.soulskirmish.SoulSkirmish
+api-version: 1.16
+
+commands:
+  join:
+    usage: /join <team name>
+  start:
+    usage: /start
+    permission: skirmish.*
+  generate:
+    usage: /generate <Team Amount>
+    permission: skirmish.*
+
+
+permissions:
+  skirmish.*:
+    default: op
