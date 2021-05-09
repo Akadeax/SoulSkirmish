@@ -22,7 +22,9 @@ public final class SoulSkirmish extends JavaPlugin {
 
         getCommand("start").setExecutor(new StartCommand());
         getCommand("generate").setExecutor(new GenerateCommand());
+        getCommand("reset").setExecutor(new ResetCommand());
 
         Bukkit.getPluginManager().registerEvents(new CancelListener(), this);
+        Bukkit.getPluginManager().registerEvents(new DeathListener(), this);
     }
 }

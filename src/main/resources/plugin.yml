@@ -12,6 +12,9 @@ commands:
   generate:
     usage: /generate <Team Amount>
     permission: skirmish.*
+  reset:
+    usage: /reset
+    permission: skirmish.*
 
 
 permissions:

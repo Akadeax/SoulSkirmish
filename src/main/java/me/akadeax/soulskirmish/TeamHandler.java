@@ -10,14 +10,18 @@ import org.bukkit.scoreboard.Team;
 import java.util.*;
 
 public class TeamHandler {
-    private final TreeMap<String, ChatColor> colors = new TreeMap<String, ChatColor>() {
+    public static final TreeMap<String, ChatColor> colors = new TreeMap<String, ChatColor>() {
         {
             put("red", ChatColor.RED);
-            put("blue", ChatColor.DARK_BLUE);
+            put("blue", ChatColor.BLUE);
             put("green", ChatColor.GREEN);
             put("gold", ChatColor.GOLD);
             put("purple", ChatColor.DARK_PURPLE);
             put("aqua", ChatColor.AQUA);
+            put("dark_red", ChatColor.DARK_RED);
+            put("dark_blue", ChatColor.DARK_BLUE);
+            put("dark_gray", ChatColor.DARK_GRAY);
+            put("dark_green", ChatColor.DARK_GREEN);
         }
     };
 
@@ -28,10 +32,7 @@ public class TeamHandler {
         assert manager != null;
         Scoreboard board = manager.getMainScoreboard();
 
-        teams = new HashSet<>();
-        for(Team team : board.getTeams()) {
-            team.unregister();
-        }
+        resetTeams();
 
         Iterator<String> itr = colors.keySet().iterator();
 
@@ -66,12 +67,23 @@ public class TeamHandler {
         Scoreboard board = manager.getMainScoreboard();
 
         Team pTeam = board.getEntryTeam(player.getName());
-        assert pTeam != null;
+        if(pTeam == null) return null;
 
         for(PlayerTeam team : teams) {
             if(team.team.getName().equals(pTeam.getName())) return team;
         }
 
         return null;
+    }
+
+    public void resetTeams() {
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        assert manager != null;
+        Scoreboard board = manager.getMainScoreboard();
+
+        teams = new HashSet<>();
+        for(Team team : board.getTeams()) {
+            team.unregister();
+        }
     }
 }

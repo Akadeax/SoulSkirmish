@@ -9,7 +9,6 @@ public class PlayerTeam {
     public int respawns = 3;
 
     public Team team;
-    public HashSet<UUID> members;
 
     public PlayerTeam(Team team) {
         this.team = team;
